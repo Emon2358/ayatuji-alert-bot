@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>カトホーム非公式 Discord Bot</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+      :root {
+        --primary-color: #7289da;
+        --secondary-color: #99aab5;
+        --background-color: #2c2f33;
+        --text-color: #ffffff;
+      }
+
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: "Noto Sans JP", sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--background-color) 0%,
+          #23272a 100%
+        );
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1000px;
+        height: 100vh;
+        padding: 2rem;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      .header {
+        font-size: 2.8em;
+        font-weight: bold;
+        text-align: center;
+        background: linear-gradient(
+          45deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: shimmer 3s infinite linear;
+        margin-bottom: 1rem;
+      }
+
+      .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+
+      .text-container {
+        flex: 1;
+        padding-right: 2rem;
+      }
+
+      .text {
+        font-size: 1.2em;
+        line-height: 1.6;
+        margin-bottom: 0.8rem;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      .images {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .image-wrapper {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 10px;
+        perspective: 1000px;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+
+      .image-wrapper:hover {
+        transform: rotateY(180deg);
+      }
+
+      .image-front,
+      .image-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+
+      .image-back {
+        background-color: var(--primary-color);
+        transform: rotateY(180deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .cross {
+        font-size: 2em;
+        color: var(--primary-color);
+        animation: pulse 2s infinite;
+      }
+
+      .features {
+        background-color: rgba(114, 137, 218, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        max-width: 600px;
+        backdrop-filter: blur(5px);
+      }
+
+      .feature-item {
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateX(10px);
+      }
+
+      .feature-icon {
+        margin-right: 15px;
+        color: var(--primary-color);
+        font-size: 1.5em;
+      }
+
+      .cta-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .cta-button:hover {
+        background-color: #5b6eae;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .creator {
+        margin-top: 1.5rem;
+        font-size: 0.9em;
+        opacity: 0.7;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .content {
+          flex-direction: column;
+        }
+        .text-container {
+          padding-right: 0;
+          margin-bottom: 1rem;
+        }
+        .header {
+          font-size: 2.2em;
+        }
+        .cta-button {
+          top: 10px;
+          right: 10px;
+          padding: 8px 16px;
+          font-size: 0.9em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a
+        href="https://discord.com/oauth2/authorize?client_id=1285893986346733629&permissions=8&integration_type=0&scope=bot"
+        class="cta-button"
+        target="_blank"
+        >Botを追加</a
+      >
+      <h1 class="header">カトホーム非公式 Discord Bot</h1>
+      <div class="content">
+        <div class="text-container">
+          <p class="text">Discordで楽しむカトホームの新体験！</p>
+          <p class="text">加藤純一さんの配信をリアルタイムでキャッチ</p>
+          <p class="text">※一部機能しか搭載できていません</p>
+        </div>
+        <div class="images">
+          <div class="image-wrapper">
+            <div class="image-front">
+              <img
+                src="https://sp-ao.shortpixel.ai/client/to_auto,q_lossless,ret_img,w_195,h_210/https://app-story.net/wp-content/uploads/2021/01/%E3%82%AB%E3%83%88%E3%83%9B%E3%83%BC%E3%83%A0.png"
+                alt="カトホーム"
+                class="image"
+              />
+            </div>
+            <div class="image-back">カトホーム</div>
+          </div>
+          <div class="cross">✖</div>
+          <div class="image-wrapper">
+            <div class="image-front">
+              <img
+                src="https://yxkhkhiw.github.io/crow-token-exchange-calculate/images/discord.webp"
+                alt="Discord"
+                class="image"
+              />
+            </div>
+            <div class="image-back">Discord</div>
+          </div>
+        </div>
+      </div>
+      <div class="features">
+        <div class="feature-item">
+          <span class="feature-icon">🚀</span>
+          <span>カトホームの魅力をDiscordで体験</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🔔</span>
+          <span>Twitch配信をリアルタイム通知</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">💬</span>
+          <span>シンプルコマンド: /help, /stream_check</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">‼️</span>
+          <span>※一部機能しか搭載できていません</span>
+        </div>
+      </div>
+      <p class="creator">created by emon2358</p>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const texts = document.querySelectorAll(".text");
+        texts.forEach((text, index) => {
+          text.style.animationDelay = `${index * 0.3}s`;
+        });
+      });
+    </script>
+  </body>
+</html>
