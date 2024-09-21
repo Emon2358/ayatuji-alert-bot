@@ -18,7 +18,7 @@
       html {
         margin: 0;
         padding: 0;
-        height: 100vh;
+        min-height: 100vh;
         font-family: "Noto Sans JP", sans-serif;
         background: linear-gradient(
           135deg,
@@ -29,7 +29,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
       }
 
       .container {
@@ -39,14 +38,14 @@
         justify-content: space-between;
         width: 100%;
         max-width: 1000px;
-        height: 100vh;
-        padding: 2rem;
+        min-height: 100vh;
+        padding: 1rem;
         box-sizing: border-box;
         position: relative;
       }
 
       .header {
-        font-size: 2.8em;
+        font-size: 2em;
         font-weight: bold;
         text-align: center;
         background: linear-gradient(
@@ -58,24 +57,25 @@
         -webkit-background-clip: text;
         color: transparent;
         animation: shimmer 3s infinite linear;
-        margin-bottom: 1rem;
+        margin: 2rem 0;
       }
 
       .content {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
         width: 100%;
         margin-bottom: 2rem;
       }
 
       .text-container {
-        flex: 1;
-        padding-right: 2rem;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
       }
 
       .text {
-        font-size: 1.2em;
+        font-size: 1em;
         line-height: 1.6;
         margin-bottom: 0.8rem;
         opacity: 0;
@@ -87,14 +87,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
+        flex-wrap: wrap;
+        margin: 1rem 0;
       }
 
       .image-wrapper {
         position: relative;
-        width: 120px;
-        height: 120px;
-        margin: 0 10px;
+        width: 100px;
+        height: 100px;
+        margin: 0.5rem;
         perspective: 1000px;
         transition: transform 0.6s;
         transform-style: preserve-3d;
@@ -122,6 +123,7 @@
         justify-content: center;
         align-items: center;
         font-weight: bold;
+        font-size: 0.8em;
       }
 
       .image {
@@ -134,12 +136,13 @@
         font-size: 2em;
         color: var(--primary-color);
         animation: pulse 2s infinite;
+        margin: 0 0.5rem;
       }
 
       .features {
         background-color: rgba(114, 137, 218, 0.1);
         border-radius: 15px;
-        padding: 1.5rem;
+        padding: 1rem;
         margin-bottom: 1.5rem;
         width: 100%;
         max-width: 600px;
@@ -158,15 +161,12 @@
       }
 
       .feature-icon {
-        margin-right: 15px;
+        margin-right: 10px;
         color: var(--primary-color);
-        font-size: 1.5em;
+        font-size: 1.2em;
       }
 
       .cta-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
         background-color: var(--primary-color);
         color: var(--text-color);
         border: none;
@@ -178,6 +178,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         text-decoration: none;
         display: inline-block;
+        margin: 1rem 0;
       }
 
       .cta-button:hover {
@@ -187,8 +188,8 @@
       }
 
       .creator {
-        margin-top: 1.5rem;
-        font-size: 0.9em;
+        margin-top: 1rem;
+        font-size: 0.8em;
         opacity: 0.7;
       }
 
@@ -220,34 +221,33 @@
         }
       }
 
-      @media (max-width: 768px) {
+      @media (min-width: 768px) {
+        .header {
+          font-size: 2.5em;
+        }
         .content {
-          flex-direction: column;
+          flex-direction: row;
+          justify-content: space-between;
         }
         .text-container {
-          padding-right: 0;
-          margin-bottom: 1rem;
+          text-align: left;
+          padding-right: 2rem;
         }
-        .header {
-          font-size: 2.2em;
+        .text {
+          font-size: 1.2em;
         }
-        .cta-button {
-          top: 10px;
-          right: 10px;
-          padding: 8px 16px;
-          font-size: 0.9em;
+        .image-wrapper {
+          width: 120px;
+          height: 120px;
+        }
+        .feature-item {
+          font-size: 1.1em;
         }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <a
-        href="https://discord.com/oauth2/authorize?client_id=1285893986346733629&permissions=8&integration_type=0&scope=bot"
-        class="cta-button"
-        target="_blank"
-        >Botを追加</a
-      >
       <h1 class="header">カトホーム非公式 Discord Bot</h1>
       <div class="content">
         <div class="text-container">
@@ -297,6 +297,12 @@
           <span>※一部機能しか搭載できていません</span>
         </div>
       </div>
+      <a
+        href="https://discord.com/oauth2/authorize?client_id=1285893986346733629&permissions=8&integration_type=0&scope=bot"
+        class="cta-button"
+        target="_blank"
+        >Botを追加</a
+      >
       <p class="creator">created by emon2358</p>
     </div>
     <script>
