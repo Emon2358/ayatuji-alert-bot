@@ -32,20 +32,18 @@
       }
 
       .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
         width: 100%;
-        max-width: 1000px;
+        max-width: 1200px;
         min-height: 100vh;
         padding: 1rem;
         box-sizing: border-box;
-        position: relative;
       }
 
       .header {
-        font-size: 2em;
+        font-size: clamp(1.5rem, 5vw, 2.8rem);
         font-weight: bold;
         text-align: center;
         background: linear-gradient(
@@ -57,25 +55,23 @@
         -webkit-background-clip: text;
         color: transparent;
         animation: shimmer 3s infinite linear;
-        margin: 2rem 0;
+        margin: 1rem 0;
       }
 
       .content {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        margin-bottom: 2rem;
+        gap: 1rem;
       }
 
       .text-container {
-        width: 100%;
         text-align: center;
-        margin-bottom: 1rem;
+        max-width: 600px;
       }
 
       .text {
-        font-size: 1em;
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
         line-height: 1.6;
         margin-bottom: 0.8rem;
         opacity: 0;
@@ -88,14 +84,13 @@
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        margin: 1rem 0;
+        gap: 1rem;
       }
 
       .image-wrapper {
         position: relative;
-        width: 100px;
-        height: 100px;
-        margin: 0.5rem;
+        width: clamp(80px, 15vw, 120px);
+        height: clamp(80px, 15vw, 120px);
         perspective: 1000px;
         transition: transform 0.6s;
         transform-style: preserve-3d;
@@ -123,7 +118,7 @@
         justify-content: center;
         align-items: center;
         font-weight: bold;
-        font-size: 0.8em;
+        font-size: clamp(0.7rem, 2vw, 1rem);
       }
 
       .image {
@@ -133,17 +128,15 @@
       }
 
       .cross {
-        font-size: 2em;
+        font-size: clamp(1.5rem, 4vw, 2rem);
         color: var(--primary-color);
         animation: pulse 2s infinite;
-        margin: 0 0.5rem;
       }
 
       .features {
         background-color: rgba(114, 137, 218, 0.1);
         border-radius: 15px;
         padding: 1rem;
-        margin-bottom: 1.5rem;
         width: 100%;
         max-width: 600px;
         backdrop-filter: blur(5px);
@@ -163,7 +156,11 @@
       .feature-icon {
         margin-right: 10px;
         color: var(--primary-color);
-        font-size: 1.2em;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+      }
+
+      .feature-text {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
       }
 
       .cta-button {
@@ -171,7 +168,7 @@
         color: var(--text-color);
         border: none;
         padding: 10px 20px;
-        font-size: 1em;
+        font-size: clamp(0.9rem, 2vw, 1rem);
         border-radius: 50px;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -188,9 +185,9 @@
       }
 
       .creator {
-        margin-top: 1rem;
-        font-size: 0.8em;
+        font-size: clamp(0.7rem, 1.5vw, 0.9rem);
         opacity: 0.7;
+        text-align: center;
       }
 
       @keyframes fadeInUp {
@@ -222,26 +219,38 @@
       }
 
       @media (min-width: 768px) {
-        .header {
-          font-size: 2.5em;
+        .container {
+          grid-template-columns: repeat(2, 1fr);
+          align-items: center;
         }
+
+        .header {
+          grid-column: 1 / -1;
+        }
+
         .content {
           flex-direction: row;
           justify-content: space-between;
+          grid-column: 1 / -1;
         }
+
         .text-container {
           text-align: left;
           padding-right: 2rem;
         }
-        .text {
-          font-size: 1.2em;
+
+        .features {
+          grid-column: 1 / -1;
+          justify-self: center;
         }
-        .image-wrapper {
-          width: 120px;
-          height: 120px;
+
+        .cta-button {
+          grid-column: 1 / -1;
+          justify-self: center;
         }
-        .feature-item {
-          font-size: 1.1em;
+
+        .creator {
+          grid-column: 1 / -1;
         }
       }
     </style>
@@ -282,19 +291,19 @@
       <div class="features">
         <div class="feature-item">
           <span class="feature-icon">🚀</span>
-          <span>カトホームの魅力をDiscordで体験</span>
+          <span class="feature-text">カトホームの魅力をDiscordで体験</span>
         </div>
         <div class="feature-item">
           <span class="feature-icon">🔔</span>
-          <span>Twitch配信をリアルタイム通知</span>
+          <span class="feature-text">Twitch配信をリアルタイム通知</span>
         </div>
         <div class="feature-item">
           <span class="feature-icon">💬</span>
-          <span>シンプルコマンド: /help, /stream_check</span>
+          <span class="feature-text">シンプルコマンド: /help, /stream_check</span>
         </div>
         <div class="feature-item">
           <span class="feature-icon">‼️</span>
-          <span>※一部機能しか搭載できていません</span>
+          <span class="feature-text">※一部機能しか搭載できていません</span>
         </div>
       </div>
       <a
